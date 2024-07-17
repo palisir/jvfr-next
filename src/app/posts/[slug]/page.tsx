@@ -1,13 +1,12 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/api";
-import { CMS_NAME } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
-import Alert from "@/app/_components/alert";
 import Container from "@/app/_components/container";
 import Header from "@/app/_components/header";
 import { PostBody } from "@/app/_components/post-body";
-import { PostHeader } from "@/app/_components/post-header";
+import { BLOG_TITLE } from "@/lib/constants";
+import CoverImage from "@/app/_components/cover-image";
 
 export default async function Post({ params }: Params) {
   const post = getPostBySlug(params.slug);
@@ -20,16 +19,15 @@ export default async function Post({ params }: Params) {
 
   return (
     <main>
-      <Alert preview={post.preview} />
       <Container>
         <Header />
-        <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-            author={post.author}
-          />
+        <article>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
+            {post.title}
+          </h1>
+          <div className="mb-8 md:mb-16 sm:mx-0">
+            <CoverImage title={post.title} slug={"alain-reveil"} />
+          </div>
           <PostBody content={content} />
         </article>
       </Container>
@@ -50,13 +48,12 @@ export function generateMetadata({ params }: Params): Metadata {
     return notFound();
   }
 
-  const title = `${post.title} | Next.js Blog Example with ${CMS_NAME}`;
+  const title = `${post.title} | ${BLOG_TITLE}`;
 
   return {
     title,
     openGraph: {
       title,
-      images: [post.ogImage.url],
     },
   };
 }

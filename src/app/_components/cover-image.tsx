@@ -1,35 +1,50 @@
-import cn from "classnames";
-import Link from "next/link";
+"use client";
 import Image from "next/image";
+import { useState } from "react";
+import RevealButton from "./reveal-button";
 
 type Props = {
   title: string;
-  src: string;
   slug?: string;
 };
 
-const CoverImage = ({ title, src, slug }: Props) => {
+const CoverImage = ({ title, slug }: Props) => {
+  const [showOg, setShowOg] = useState(false);
+
+  const ogToggle = (): void => {
+    setShowOg(!showOg);
+  };
+
   const image = (
     <Image
-      src={src}
+      src={`/assets/post-img/${slug}.jpg`}
       alt={`Cover Image for ${title}`}
-      className={cn("shadow-sm w-full", {
-        "hover:shadow-lg transition-shadow duration-200": slug,
-      })}
-      width={1300}
-      height={630}
+      fill
     />
   );
   return (
-    <div className="sm:mx-0">
-      {slug ? (
-        <Link href={`/posts/${slug}`} aria-label={title}>
-          {image}
-        </Link>
-      ) : (
-        image
-      )}
-    </div>
+    <>
+      <div className="sm:mx-0">
+        <div
+          className="cover-image relative"
+          onMouseEnter={() => setShowOg(true)}
+          onMouseLeave={() => setShowOg(false)}
+        >
+          <img
+            className="post-img"
+            src={`/assets/post-img/${slug}.jpg`}
+            style={{ display: showOg ? "none" : "inherit" }}
+          />
+          <img
+            className="post-img"
+            src={`/assets/post-img/${slug}-original.jpg`}
+            style={{ display: showOg ? "inherit" : "none" }}
+            loading="eager"
+          />
+        </div>
+      </div>
+      <RevealButton altState={showOg} callback={ogToggle} />
+    </>
   );
 };
 
