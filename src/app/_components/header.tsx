@@ -2,8 +2,6 @@ import { BLOG_TITLE } from "@/lib/constants";
 import Image from "next/image";
 import Link from "next/link";
 
-// import logo from "/logo.png";
-
 const Header = () => {
   return (
     <>

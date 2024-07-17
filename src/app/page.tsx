@@ -10,16 +10,10 @@ export default function Index() {
     <main>
       <Container>
         <Intro />
-        <section>
-          <div className="grid grid-cols-1 md:gap-x-16 lg:gap-x-32 gap-y-20 md:gap-y-32 mb-32">
-            {allPosts.map((post) => (
-              <PostPreview
-                key={post.slug}
-                title={post.title}
-                slug={post.slug}
-              />
-            ))}
-          </div>
+        <section className="grid grid-cols-1 gap-y-20">
+          {allPosts.map((post) => (
+            <PostPreview key={post.slug} title={post.title} slug={post.slug} />
+          ))}
         </section>
       </Container>
     </main>

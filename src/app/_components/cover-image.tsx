@@ -24,25 +24,24 @@ const CoverImage = ({ title, slug }: Props) => {
   );
   return (
     <>
-      <div className="sm:mx-0">
-        <div
-          className="cover-image relative"
-          onMouseEnter={() => setShowOg(true)}
-          onMouseLeave={() => setShowOg(false)}
-        >
-          <img
-            className="post-img"
-            src={`/assets/post-img/${slug}.jpg`}
-            style={{ display: showOg ? "none" : "inherit" }}
-          />
-          <img
-            className="post-img"
-            src={`/assets/post-img/${slug}-original.jpg`}
-            style={{ display: showOg ? "inherit" : "none" }}
-            loading="eager"
-          />
-        </div>
+      <div
+        className="w-full"
+        onMouseEnter={() => setShowOg(true)}
+        onMouseLeave={() => setShowOg(false)}
+      >
+        <img
+          className="post-img w-full"
+          src={`/assets/post-img/${slug}.jpg`}
+          style={{ display: showOg ? "none" : "inherit" }}
+        />
+        <img
+          className="post-img w-full"
+          src={`/assets/post-img/${slug}-original.jpg`}
+          style={{ display: showOg ? "inherit" : "none" }}
+          loading="eager"
+        />
       </div>
+
       <RevealButton altState={showOg} callback={ogToggle} />
     </>
   );

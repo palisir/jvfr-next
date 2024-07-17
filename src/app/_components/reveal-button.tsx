@@ -11,7 +11,7 @@ const RevealButton = ({ altState, callback }: Props) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-32"
+        className=""
       >
         <path
           strokeLinecap="round"
@@ -35,7 +35,7 @@ const RevealButton = ({ altState, callback }: Props) => {
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"
-        className="size-32"
+        className="w-full"
       >
         <path
           strokeLinecap="round"
@@ -49,12 +49,14 @@ const RevealButton = ({ altState, callback }: Props) => {
   const icon = () => {};
 
   return (
-    <button
-      className="bg-white text-normal-800 absolute -mt-48 ml-24 z-10 p-2 rounded-lg"
-      onClick={callback}
-    >
-      {altState ? <EyeSVG /> : <EyeSlashSVG />}
-    </button>
+    <div className="grid grid-cols-1 sm:visible md:hidden">
+      <button
+        className="bg-white border border-slate-400 text-normal-800 -mt-32 z-10 p-2 rounded-lg size-1/6 h-fit"
+        onClick={callback}
+      >
+        {altState ? <EyeSVG /> : <EyeSlashSVG />}
+      </button>
+    </div>
   );
 };
 

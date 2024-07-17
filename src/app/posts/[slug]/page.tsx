@@ -25,10 +25,12 @@ export default async function Post({ params }: Params) {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
             {post.title}
           </h1>
-          <div className="mb-8 md:mb-16 sm:mx-0">
-            <CoverImage title={post.title} slug={"alain-reveil"} />
-          </div>
-          <PostBody content={content} />
+          <CoverImage title={post.title} slug={post.slug} />
+          <PostBody
+            content={content}
+            refUrl={post.refUrl}
+            originalTitle={post.originalTitle}
+          />
         </article>
       </Container>
     </main>
